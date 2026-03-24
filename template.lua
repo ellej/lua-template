@@ -1,7 +1,7 @@
 local template = {}
 
 function template.escape(data)
-  return tostring(data or ''):gsub("[\">/<'&]", {
+  return tostring(data == nil and "" or data):gsub("[\">/<'&]", {
     ["&"] = "&amp;",
     ["<"] = "&lt;",
     [">"] = "&gt;",
@@ -33,7 +33,7 @@ function template.print(data, args, callback)
         data(exec)
       end
     else
-      callback(tostring(data or ''))
+      callback(tostring(data == nil and "" or data))
     end
   end
   exec(data)
