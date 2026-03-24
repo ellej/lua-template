@@ -72,4 +72,16 @@ function template.compile(...)
   return f()
 end
 
+function template.render(data, args)
+  local parts = {}
+  local i = 0
+
+  template.print(data, args, function(p)
+    i = i + 1
+    parts[i] = p
+  end)
+
+  return table.concat(parts)
+end
+
 return template
